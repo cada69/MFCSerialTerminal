@@ -1,4 +1,4 @@
-# 🔌 MFC Serial Terminal
+# MFC Serial Terminal
 
 A modern, fast, native Windows serial port terminal built with MFC and C++17.  
 ** Just a clean, professional COM port tool.**
@@ -9,7 +9,7 @@ A modern, fast, native Windows serial port terminal built with MFC and C++17.
 
 ---
 
-## ✨ Features
+## Features
 
 | Feature | Details |
 |--------|---------|
@@ -28,13 +28,8 @@ A modern, fast, native Windows serial port terminal built with MFC and C++17.
 
 ---
 
-## 📸 Screenshots
 
-> *(Add screenshots here once built)*
-
----
-
-## 🛠️ Building
+## Building
 
 ### Requirements
 - Visual Studio 2022 (Community or higher)
@@ -60,7 +55,7 @@ The output EXE will be in `x64\Release\`.
 
 ---
 
-## 🚀 Usage
+## Usage
 
 1. Launch `MFCSerialTerminal.exe`
 2. Go to **Connection → Settings** and choose your COM port, baud rate, etc.
@@ -80,7 +75,7 @@ The output EXE will be in `x64\Release\`.
 
 ---
 
-## 🗂️ Project Structure
+##️ Project Structure
 
 ```
 MFCSerialTerminal/
@@ -98,7 +93,7 @@ MFCSerialTerminal/
 
 ---
 
-## 🔧 Architecture
+## Architecture
 
 - **Serial I/O**: Full overlapped (async) I/O using `OVERLAPPED` structs — never blocks the UI thread
 - **Thread safety**: Read thread posts `WM_SERIAL_DATA` messages to the UI thread; no shared state accessed without mutex
@@ -107,7 +102,7 @@ MFCSerialTerminal/
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Pull requests welcome! Ideas for future features:
 
@@ -119,6 +114,6 @@ Pull requests welcome! Ideas for future features:
 
 ---
 
-## 📄 License
+## License
 
-MIT © YOUR_USERNAME
+MIT © cada69
