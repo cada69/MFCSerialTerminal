@@ -1,0 +1,58 @@
+name: Build
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ created ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        platform: [x64]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Build ${{ matrix.configuration }} | ${{ matrix.platform }}
+      run: |
+        msbuild MFCSerialTerminal.vcxproj `
+          /p:Configuration=${{ matrix.configuration }} `
+          /p:Platform=${{ matrix.platform }} `
+          /m /nologo /verbosity:minimal
+
+    - name: Upload artifact (Release only)
+      if: matrix.configuration == 'Release'
+      uses: actions/upload-artifact@v4
+      with:
+        name: MFCSerialTerminal-${{ matrix.platform }}-${{ matrix.configuration }}
+        path: |
+          x64/Release/MFCSerialTerminal.exe
+        if-no-files-found: warn
+
+  release:
+    if: github.event_name == 'release'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: MFCSerialTerminal-x64-Release
+
+    - name: Upload to Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: MFCSerialTerminal.exe
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

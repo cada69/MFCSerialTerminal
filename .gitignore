@@ -1,0 +1,28 @@
+# Build output
+x64/
+Win32/
+Debug/
+Release/
+*.exe
+*.pdb
+*.ilk
+*.obj
+*.idb
+*.pch
+*.ipdb
+*.iobj
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.aps
+*.ncb
+*.sdf
+*.opensdf
+*.cachefile
+
+# Temp
+*.tmp
+*.log
+Thumbs.db
